@@ -1,0 +1,43 @@
+/* Estilos para la interfaz principal */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Roboto', sans-serif;
+    color: #212529;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+.navbar {
+    background-color: #007bff;
+}
+
+.navbar-brand {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+    font-size: 1.1em;
+    padding: 10px 15px;
+}
+
+.btn {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    margin: 10px;
+}
+
+.table th, .table td {
+    text-align: center;
+}
+
+footer {
+    background-color: #343a40;
+    color: white;
+}
+
+footer p {
+    margin: 0;
+}

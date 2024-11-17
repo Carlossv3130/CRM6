@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte de Clientes y Contratos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Reporte de Clientes y Contratos</h1>
+        <table class="table table-bordered table-striped mt-4">
+            <thead class="table-dark">
+                <tr>
+                    <th>Cliente</th>
+                    <th>Documento</th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                    <th>Contratos</th>
+                    <th>Total Contratos</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cliente in report_data %}
+                <tr>
+                    <td>{{ cliente.cliente }}</td>
+                    <td>{{ cliente.documento }}</td>
+                    <td>{{ cliente.email }}</td>
+                    <td>{{ cliente.telefono }}</td>
+                    <td>
+                        <ul>
+                            {% for contrato in cliente.contratos %}
+                            <li>{{ contrato.descripcion }} (Inicio: {{ contrato.fecha_inicio }})</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    <td>{{ cliente.total_contratos }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestión de Clientes (CRM)</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            background-color: #f4f7fc;
+            font-family: 'Arial', sans-serif;
+        }
+        .card-body {
+            background-color: #ffffff;
+            border-radius: 10px;
+        }
+        .stats-card {
+            background-color: #007bff;
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease-in-out;
+            padding: 20px;
+            text-align: center;
+        }
+        .stats-card:hover {
+            transform: scale(1.05);
+        }
+        .stats-card i {
+            font-size: 50px;
+        }
+        .stats-card .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #fff; /* Color del texto */
+        }
+        .stats-card .stat-text {
+            font-size: 1rem;
+            color: #f1f1f1; /* Color del texto */
+        }
+        .heading {
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .btn-primary-custom {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary-custom:hover {
+            background-color: #0056b3;
+        }
+        .section-title {
+            margin-top: 40px;
+            color: #333;
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .description-text {
+            font-size: 1rem;
+            text-align: justify;
+            color: #555;
+            line-height: 1.6;
+        }
+        .chart-container {
+            position: relative;
+            height: 250px;
+            width: 100%;
+        }
+        .row {
+            margin-bottom: 30px;
+        }
+        .table-container {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Título -->
+            <div class="col-12">
+                <h1 class="heading">Sistema de Gestión de Clientes (CRM)</h1>
+            </div>
+
+            <!-- Estadísticas -->
+            <div class="col-md-4">
+                <div class="card stats-card">
+                    <i class="fas fa-users"></i>
+                    <div class="stat-number" id="client-count">1200</div>
+                    <div class="stat-text">Clientes Registrados</div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card stats-card">
+                    <i class="fas fa-chart-line"></i>
+                    <div class="stat-number" id="marketing-count">15000</div>
+                    <div class="stat-text">Ventas de Mercadotecnia</div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card stats-card">
+                    <i class="fas fa-calendar-alt"></i>
+                    <div class="stat-number" id="upcoming-appointments">35</div>
+                    <div class="stat-text">Citas Pendientes</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botones -->
+        <div class="row mt-4">
+            <div class="col-12 text-center">
+                <a href="/add_client" class="btn btn-primary-custom animate__animated animate__fadeIn">Registrar Cliente</a>
+                <a href="/citas" class="btn btn-primary-custom animate__animated animate__fadeIn animate__delay-1s">Ver Citas</a>
+            </div>
+        </div>
+
+        <!-- Sección de Descripción del Proyecto -->
+        <div class="section-title">Acerca del Proyecto</div>
+        <p class="description-text">
+            El Sistema de Gestión de Clientes (CRM) tiene como objetivo optimizar la gestión de relaciones con los clientes, facilitando el seguimiento de sus interacciones, la gestión de contratos y la toma de decisiones informadas. A través de esta plataforma, las empresas pueden centralizar la información de sus clientes, monitorear actividades comerciales y realizar análisis de ventas y marketing de manera eficiente.
+            <br><br>
+            Además, el sistema está diseñado para proporcionar una experiencia fluida y amigable, lo que permite a los usuarios gestionar y visualizar fácilmente el estado de sus clientes, proyectos y citas comerciales. Con herramientas de análisis en tiempo real, el CRM ofrece una visión clara del desempeño de la empresa, ayudando a mejorar la productividad y las relaciones a largo plazo con los clientes.
+        </p>
+
+        <!-- Análisis Financiero del Mercado -->
+        <div class="section-title">Análisis Financiero del Mercado</div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="chart-container">
+                    <canvas id="financeChart"></canvas>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="chart-container">
+                    <canvas id="growthChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reportes de Ventas de Clientes -->
+        <div class="section-title">Reportes de Ventas de Clientes</div>
+        <div class="table-container">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Ventas Realizadas</th>
+                        <th>Fecha de Registro</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody id="client-sales-report">
+                    <!-- Aquí se llenarán los datos de los clientes -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Reportes de Contratos -->
+        <div class="section-title">Reportes de Contratos</div>
+        <div class="table-container">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Contrato ID</th>
+                        <th>Cliente</th>
+                        <th>Fecha de Firma</th>
+                        <th>Valor del Contrato</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody id="contract-report">
+                    <!-- Aquí se llenarán los datos de los contratos -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Datos de ejemplo para clientes
+        const clients = [
+            { name: "Juan Pérez", sales: 1200, registration_date: "2024-01-15" },
+            { name: "Ana Gómez", sales: 850, registration_date: "2023-12-05" },
+            { name: "Carlos López", sales: 1050, registration_date: "2024-03-10" },
+            { name: "Laura Martínez", sales: 450, registration_date: "2024-02-22" },
+            { name: "Pedro Díaz", sales: 650, registration_date: "2024-04-01" }
+        ];
+
+        // Función para actualizar los reportes de ventas de clientes
+        function updateClientSalesReport(clients) {
+            const tableBody = document.getElementById('client-sales-report');
+            tableBody.innerHTML = '';
+
+            clients.forEach(client => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${client.name}</td>
+                    <td>$${client.sales}</td>
+                    <td>${client.registration_date}</td>
+                    <td><button class="btn btn-primary">Ver Detalles</button></td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Función para actualizar las gráficas
+        function updateCharts(clients) {
+            const financeChart = new Chart(document.getElementById('financeChart'), {
+                type: 'bar',
+                data: {
+                    labels: clients.map(client => client.name),
+                    datasets: [{
+                        label: 'Ventas',
+                        data: clients.map(client => client.sales),
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                }
+            });
+
+            const growthChart = new Chart(document.getElementById('growthChart'), {
+                type: 'line',
+                data: {
+                    labels: clients.map(client => client.name),
+                    datasets: [{
+                        label: 'Crecimiento',
+                        data: clients.map(client => client.sales * 1.05), // Ejemplo de crecimiento
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                }
+            });
+        }
+
+        // Inicializar los datos al cargar la página
+        updateClientSalesReport(clients);
+        updateCharts(clients);
+    </script>
+</body>
+</html>
